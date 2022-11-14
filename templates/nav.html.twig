@@ -1,0 +1,7 @@
+<nav>
+    <ul>
+        <li><a href="{{ path('app_liste_produits') }}" {% if actif is defined and actif == 'liste' %} class="actif" {% endif %}>Voir les produits</a></li>
+        <li><a href="{{ path('app_distributeurs') }}" {% if actif is defined and actif == 'distributeurs' %} class="actif" {% endif %}>Voir les distributeurs</a></li>
+        <li><a href="{{ path('all_fabricants') }}" {% if actif is defined and actif == 'fabricants' %} class="actif" {% endif %}>Gérer les fabricants</a></li>
+    </ul>
+</nav>

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ListeProduitsController!{% endblock %}
+
+{% block body %}
+<div class="last">
+    <p>-20 % sur notre nouveaux produits : {{ last_produit.nom }}</p>
+</div>
+<p class="crud"><a href="{{ path('insert') }}">Ajouter un produit</a></p>
+<div class="produits">
+{% for produit in liste_produits %}
+    <div>
+        <img src={{ asset('images/'~produit.lienImage) }} >
+        <div class="texte-produit">
+            <h2>{{ produit.nom | capitalize }}</h2>
+            <p>{{ produit.prix }} €</p>
+            <p>En stock : 
+                {% if not produit.rupture %}
+                oui <br />
+                {{ produit.quantite }} exemplaires disponibles
+                {% else %}
+                non, rupture de stock
+            {% endif %}
+            <p>Vendu par :
+                {% if produit.distributeur is not empty %}
+                <ul>
+                    {% for distributeur in produit.distributeur %}
+                        <li>{{ distributeur.nom }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </p>
+            <p>Fabriqué par :
+                {% if produit.fabricants is not empty %}
+                <ul>
+                    {% for fabricant in produit.fabricants %}
+                        <li>{{ fabricant.nom }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </p>
+            <p>Ref : 
+                {% if produit.reference.numero is defined %}
+                    {{ produit.reference.numero }}
+                {% else %}
+                    Inconnue   
+                {% endif %}
+            </p>
+            <button>Ajouter au panier</button>
+            <p class="crud"><a href="{{ path('update', {'id': produit.id}) }}">Editer le produit</a></p>
+            <p class="crud"><a href="{{ path('delete', {'id': produit.id}) }}">Supprimer le produit</a></p>
+        </div>
+    </div>
+{% endfor %}
+</div>
+
+{% endblock %}

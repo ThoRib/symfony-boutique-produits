@@ -1,0 +1,141 @@
+body {
+    background-color: bisque;
+    font-family: sans-serif;
+    color: #5e5e5e;
+}
+
+.alert {
+    color: white;
+    border: 2px solid white;
+    border-radius: 2px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.alert-danger {
+    background-color: rgb(121, 0, 0);
+}
+
+.alert-success {
+    background-color: rgb(0, 65, 0);
+}
+
+/*=============NAV=============*/
+
+nav ul {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+nav li {
+    list-style-type: none;
+} 
+
+nav a.actif {
+    background-color: #fff0df;
+}
+
+/*==============PRODUITS==============*/
+
+.last {
+    display: inline-block;
+    color: white;
+    background-color:#29a319;
+    border: 2px solid white;
+    border-radius: 2px;
+    padding: 0 15px;
+}
+
+.produits,
+.distributeurs {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.produits > div,
+.distributeurs > div {
+    margin: 10px;
+    background-color: #fff0df;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+nav a,
+.crud a,
+.lien-nav {
+    text-decoration: none;
+    display: inline-block;
+    color: black;
+    padding: 0 5px;
+    line-height: 25px;
+    border: 2px solid black;
+    border-radius: 3px;
+}
+
+.distributeurs > div {
+    padding: 0 15px;
+}
+
+.distributeurs ul {
+    padding-left: 15px;
+    color: rgb(87, 5, 87);
+}
+
+.list-distrib li {
+    margin: 10px 0;
+}
+
+.texte-produit {
+    padding: 5px;
+}
+
+.produits img {
+    max-width: 250px;
+    height: auto;
+}
+
+/*=============FABRICANTS==============*/
+
+.fab {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 500px;
+}
+.nom-fab {
+    font-weight: 400;
+    font-size: 1.2rem;
+}
+.fab h2,
+.fab a {
+    margin: 0 10px;
+}
+
+/*=============FORMULAIRES=============*/
+
+.formulaire {
+    display: flex;
+    justify-content: center;
+}
+
+.formulaire > form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.formulaire > form > div {
+    margin: 10px 0;
+}
+
+.formulaire .error {
+    margin: 0;
+}
+
+.formulaire .error li {
+    list-style-type: none;
+    padding: 5px;
+    background-color:rgb(121, 0, 0);
+    color: white;
+}

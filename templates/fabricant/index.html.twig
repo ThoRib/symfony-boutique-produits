@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FabricantController!{% endblock %}
+
+{% block body %}
+<h1>{{ title }}</h1>
+<a href="{{ path('new_fabricant') }}" class="lien-nav">Nouveau Fabricant</a></li>
+<div>
+    {% for fab in listeFabs %}
+    <ul>
+        <li class="fab">
+            <h2>{{ fab.nom }}</h2> 
+            <div>
+                <a href="{{ path('update_fabricant', {'id':fab.id}) }}" class="lien-nav">Modifier</a>
+                <a href="{{ path('delete_fabricant', {'id':fab.id}) }}" class="lien-nav">Supprimer</a>
+            </div>
+        </li>
+    </ul>
+    {% endfor %}
+</div>
+{% endblock %}

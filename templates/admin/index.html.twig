@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+{% block body %}
+<h1>{{ title }}</h1>
+
+<div class="formulaire">
+    {{ form_start(form_produit) }}
+    {{ form_errors(form_produit) }}
+    <div>
+        {{ form_label(form_produit.nom) }}
+        {{ form_widget(form_produit.nom, {'attr':{'class':'form'}}) }}
+        {{ form_errors(form_produit.nom ) }}
+    </div>
+        {{ form_row(form_produit.prix) }}
+        {{ form_row(form_produit.quantite) }}
+    <div>
+        {{ form_label(form_produit.reference) }}
+        {{ form_label(form_produit.reference.numero) }}
+        {{ form_widget(form_produit.reference.numero) }}
+        {{ form_errors(form_produit.reference.numero) }}
+    </div>
+    
+    <div>
+        <h3>Distributeurs</h3>
+        {# https://symfony.com/doc/current/form/form_collections.html #}
+        {# the data-index attribute is required for the JavaScript code below #}
+    <ul class="list-distrib"
+    data-index="{{ form_produit.distributeur|length > 0 ? form_produit.distributeur|last.vars.name + 1 : 0 }}"
+    data-prototype="{{ form_widget(form_produit.distributeur.vars.prototype)|e('html_attr') }}"
+    >
+        {% for distributeur in form_produit.distributeur %}
+            <li>{{ form_row(distributeur.nom) }}</li>
+        {% endfor %}
+    </ul>
+    <button type="button" class="add_item_link" data-collection-holder-class="list-distrib">Ajouter un distributeur</button>
+    </div>
+
+    
+
+    {{ form_end(form_produit)}}
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+
+//  Fonction de suppression
+const addTagFormDeleteLink = (item) => {
+    const removeFormButton = document.createElement('button');
+    removeFormButton.innerText = 'Delete this tag';
+
+    item.append(removeFormButton);
+
+    removeFormButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        // remove the li for the tag form
+        item.remove();
+    });
+}
+
+//Fonction d'ajout
+const addFormToCollection = (e) => {
+  const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+
+  const item = document.createElement('li');
+
+  item.innerHTML = collectionHolder
+    .dataset
+    .prototype
+    .replace(
+      /__name__/g,
+      collectionHolder.dataset.index
+    );
+
+  collectionHolder.appendChild(item);
+
+  addTagFormDeleteLink(item);
+
+  collectionHolder.dataset.index++;
+};
+
+//Evenement ajouter un distributeur
+document
+  .querySelectorAll('.add_item_link')
+  .forEach(btn => {
+      btn.addEventListener("click", addFormToCollection)
+  });
+
+//Evenement supprimer un distributeur
+document
+    .querySelectorAll('ul.list-distrib li')
+    .forEach((x) => {
+        addTagFormDeleteLink(x)
+    });
+
+</script>
+{% endblock %}

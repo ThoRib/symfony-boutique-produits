@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FabricantController!{% endblock %}
+
+{% block body %}
+<h1>{{ title }}</h1>
+<div class="formulaire">
+    {{ form_start(form_fabricant) }}
+    <div>
+        {{ form_label(form_fabricant.nom) }}
+        {{ form_widget(form_fabricant.nom) }}
+        <div class="error">{{ form_errors(form_fabricant.nom) }}</div>
+    </div>
+    {{ form_end(form_fabricant) }}
+</div>
+{% endblock %}

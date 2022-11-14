@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Distributeurs{% endblock %}
+
+{% block body %}
+<div class="distributeurs">
+{% for distributeur in distributeurs %}
+    <div>
+        <h1>{{ distributeur.nom }}</h1>
+        {% if distributeur.produit is not empty %}
+            <ul>
+            {% for produit in distributeur.produit %}
+                <li>{{ produit.nom }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endfor %}
+</div>
+
+{% endblock %}
